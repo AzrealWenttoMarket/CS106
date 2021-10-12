@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
@@ -30,15 +31,20 @@ public:
     QAction *actionSave;
     QAction *actionLoad;
     QAction *actionExit;
+    QAction *actionEdit;
+    QAction *actionLeave;
+    QAction *actionSearch;
     QWidget *centralwidget;
     QLabel *lblName;
     QLabel *lblQuantity;
     QLabel *itemImage;
     QLabel *nameBox;
     QLabel *quantityBox;
-    QPushButton *pushButton;
+    QPushButton *pbDeleteSelected;
     QListWidget *lstProduct;
     QLabel *lblQuantity_2;
+    QLineEdit *leSearch;
+    QPushButton *pbSearch;
     QMenuBar *menubar;
     QMenu *menuFile;
     QStatusBar *statusbar;
@@ -56,6 +62,12 @@ public:
         actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
+        actionEdit = new QAction(MainWindow);
+        actionEdit->setObjectName(QString::fromUtf8("actionEdit"));
+        actionLeave = new QAction(MainWindow);
+        actionLeave->setObjectName(QString::fromUtf8("actionLeave"));
+        actionSearch = new QAction(MainWindow);
+        actionSearch->setObjectName(QString::fromUtf8("actionSearch"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         lblName = new QLabel(centralwidget);
@@ -77,19 +89,25 @@ public:
         quantityBox->setObjectName(QString::fromUtf8("quantityBox"));
         quantityBox->setGeometry(QRect(470, 106, 281, 21));
         quantityBox->setFrameShape(QFrame::Box);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(230, 570, 321, 23));
+        pbDeleteSelected = new QPushButton(centralwidget);
+        pbDeleteSelected->setObjectName(QString::fromUtf8("pbDeleteSelected"));
+        pbDeleteSelected->setGeometry(QRect(230, 570, 321, 23));
         lstProduct = new QListWidget(centralwidget);
         lstProduct->setObjectName(QString::fromUtf8("lstProduct"));
-        lstProduct->setGeometry(QRect(10, 10, 351, 531));
+        lstProduct->setGeometry(QRect(10, 40, 351, 501));
         lblQuantity_2 = new QLabel(centralwidget);
         lblQuantity_2->setObjectName(QString::fromUtf8("lblQuantity_2"));
         lblQuantity_2->setGeometry(QRect(380, 180, 47, 16));
+        leSearch = new QLineEdit(centralwidget);
+        leSearch->setObjectName(QString::fromUtf8("leSearch"));
+        leSearch->setGeometry(QRect(230, 10, 281, 21));
+        pbSearch = new QPushButton(centralwidget);
+        pbSearch->setObjectName(QString::fromUtf8("pbSearch"));
+        pbSearch->setGeometry(QRect(510, 10, 41, 21));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 769, 21));
+        menubar->setGeometry(QRect(0, 0, 769, 20));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         MainWindow->setMenuBar(menubar);
@@ -99,9 +117,10 @@ public:
 
         menubar->addAction(menuFile->menuAction());
         menuFile->addAction(actionNew_Product);
+        menuFile->addAction(actionExit);
         menuFile->addAction(actionSave);
         menuFile->addAction(actionLoad);
-        menuFile->addAction(actionExit);
+        menuFile->addAction(actionLeave);
 
         retranslateUi(MainWindow);
 
@@ -114,14 +133,18 @@ public:
         actionNew_Product->setText(QApplication::translate("MainWindow", "New Product", nullptr));
         actionSave->setText(QApplication::translate("MainWindow", "Save", nullptr));
         actionLoad->setText(QApplication::translate("MainWindow", "Load", nullptr));
-        actionExit->setText(QApplication::translate("MainWindow", "Exit", nullptr));
+        actionExit->setText(QApplication::translate("MainWindow", "Edit", nullptr));
+        actionEdit->setText(QApplication::translate("MainWindow", "Edit", nullptr));
+        actionLeave->setText(QApplication::translate("MainWindow", "Exit", nullptr));
+        actionSearch->setText(QApplication::translate("MainWindow", "Search", nullptr));
         lblName->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Name</span></p></body></html>", nullptr));
         lblQuantity->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Quantity</span></p></body></html>", nullptr));
         itemImage->setText(QString());
         nameBox->setText(QString());
         quantityBox->setText(QString());
-        pushButton->setText(QApplication::translate("MainWindow", "Delete Selected Product", nullptr));
+        pbDeleteSelected->setText(QApplication::translate("MainWindow", "Delete Selected Product", nullptr));
         lblQuantity_2->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">Image:</span></p></body></html>", nullptr));
+        pbSearch->setText(QApplication::translate("MainWindow", "Search", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 

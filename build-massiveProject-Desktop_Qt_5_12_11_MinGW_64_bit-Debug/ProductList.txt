@@ -1,0 +1,3 @@
+Apple,1,./images/apple.png
+Soup,1,./images/soup.png
+Video Game,1,./images/video-game.png
